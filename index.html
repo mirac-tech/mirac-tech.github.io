@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ahmet Mirac Demir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: tek sütunlu, sol hizalı dev başlık; altında bölümler, solda etiket sütunu */
+:root {
+  --bg: #0b0d12;
+  --surface: #12151c;
+  --line: #232835;
+  --fg: #e9ebf1;
+  --muted: #98a0b3;
+  --accent: #ffb454;
+  --accent-ink: #1a1204;
+  color-scheme: dark;
+  --display: "Syne", "Helvetica Neue", Arial, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f4f1; --surface: #ffffff; --line: #dedcd6; --fg: #14161c; --muted: #5d6475;
+    --accent: #b25e00; --accent-ink: #ffffff; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f5f4f1; --surface: #ffffff; --line: #dedcd6; --fg: #14161c; --muted: #5d6475;
+  --accent: #b25e00; --accent-ink: #ffffff; color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 400 17px/1.65 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1040px; margin-inline: auto; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+header.top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding-block: 24px; font: 500 13px/1 var(--mono); color: var(--muted);
+}
+header.top nav { display: flex; align-items: center; gap: 22px; }
+header.top a { text-decoration: none; }
+.themebtn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; }
+.themebtn:hover { color: var(--accent); border-color: var(--accent); }
+.themebtn svg.ic { width: 18px; height: 18px; }
+header.top a:hover { color: var(--accent); }
+.clock { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+
+.hero { padding-block: clamp(48px, 10vw, 112px) clamp(48px, 8vw, 88px); border-bottom: 1px solid var(--line); }
+.hero .eyebrow { font: 500 13px/1.6 var(--mono); color: var(--accent); letter-spacing: .1em; text-transform: uppercase; }
+.hero h1 {
+  font: 800 clamp(44px, 9.5vw, 112px)/.95 var(--display); letter-spacing: -.03em;
+  margin: 22px 0 28px; text-wrap: balance;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p.lead { max-width: 34em; font-size: clamp(18px, 2.4vw, 21px); color: var(--muted); margin: 0 0 36px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+  font: 600 15px/1 var(--body); text-decoration: none; border: 1px solid var(--line); background: none; color: var(--fg); cursor: pointer;
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+section.row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px 48px; padding-block: clamp(40px, 6vw, 72px); border-bottom: 1px solid var(--line); }
+section.row > h2 { font: 500 13px/1.6 var(--mono); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin: 0; }
+.about p { margin: 0 0 1em; max-width: 36em; font-size: 19px; }
+.about p:last-child { margin-bottom: 0; }
+.focus { margin-top: 32px; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); max-width: 36em; }
+.focus-label { display: inline-flex; align-items: center; gap: 8px; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.focus h3 { font: 700 clamp(22px, 3vw, 26px)/1.2 var(--display); letter-spacing: -.01em; margin: 14px 0 10px; }
+.about .focus p { font-size: 17px; color: var(--muted); margin: 0 0 12px; }
+.focus ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+.focus li { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; font: 500 14px/1 var(--mono); }
+
+.projects, .xps { display: grid; gap: 0; }
+.activity { display: grid; gap: 14px; padding-top: 24px; border-top: 1px solid var(--line); }
+.activity .head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 500 13px/1.4 var(--mono); color: var(--muted); }
+.activity .head a { text-decoration: none; }
+.activity .head a:hover { color: var(--accent); }
+.activity .note { margin: 0; font: 400 13px/1.5 var(--mono); color: var(--muted); max-width: 44em; }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 10px); grid-auto-columns: 10px; gap: 3px; overflow-x: auto; padding-bottom: 2px; }
+.heat i { display: block; width: 10px; height: 10px; border-radius: 2px; background: var(--surface); border: 1px solid var(--line); }
+.heat i[data-l="1"] { background: color-mix(in srgb, var(--accent) 25%, var(--surface)); border-color: transparent; }
+.heat i[data-l="2"] { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); border-color: transparent; }
+.heat i[data-l="3"] { background: color-mix(in srgb, var(--accent) 75%, var(--surface)); border-color: transparent; }
+.heat i[data-l="4"] { background: var(--accent); border-color: transparent; }
+.xp { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; padding-block: 24px; border-top: 1px solid var(--line); align-items: baseline; }
+.xp:first-child { border-top: 0; padding-top: 0; }
+.xp h3 { font: 700 clamp(22px, 3vw, 28px)/1.2 var(--display); margin: 0; letter-spacing: -.01em; }
+.xp .tags { font: 400 13px/1.4 var(--mono); color: var(--accent); }
+.xp p { grid-column: 1 / -1; margin: 4px 0 0; color: var(--muted); max-width: 40em; }
+a.project { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; padding-block: 24px; border-top: 1px solid var(--line); align-items: baseline; text-decoration: none; }
+a.project:first-child { border-top: 0; padding-top: 0; }
+.project h3 { font: 700 clamp(22px, 3vw, 28px)/1.2 var(--display); margin: 0; letter-spacing: -.01em; overflow-wrap: anywhere; }
+a.project:hover h3 { color: var(--accent); }
+.project .tags { font: 400 13px/1.4 var(--mono); color: var(--accent); }
+.project p { grid-column: 1 / -1; margin: 4px 0 0; color: var(--muted); max-width: 40em; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.skills li { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font: 500 14px/1 var(--mono); }
+
+.contact .item { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 18px; }
+.contact .big { font: 700 clamp(20px, 4.2vw, 36px)/1.2 var(--display); letter-spacing: -.02em; overflow-wrap: anywhere; margin: 0; display: flex; align-items: center; gap: 14px; }
+.contact .big svg.ic { color: var(--accent); width: 28px; height: 28px; }
+.copy { font: 500 13px/1 var(--mono); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; }
+.copy:hover { color: var(--accent); border-color: var(--accent); }
+
+.socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.community-label { margin-top: 40px; font: 500 13px/1.6 var(--mono); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+.socials.socials-community { margin-top: 14px; }
+.social {
+  display: inline-flex; align-items: center; height: 52px; padding: 0 15px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--fg);
+}
+.social svg.ic { width: 24px; height: 24px; }
+.social .lbl {
+  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; font: 500 14px/1 var(--mono);
+  transition: max-width .3s ease, opacity .25s ease, margin .3s ease;
+}
+.social:hover, .social:focus-visible { border-color: var(--accent); color: var(--accent); }
+.social:hover .lbl, .social:focus-visible .lbl { max-width: 300px; opacity: 1; margin-left: 10px; }
+@media (hover: none) { .social:not(.phone) .lbl { max-width: 300px; opacity: 1; margin-left: 10px; } }
+.social.phone { font: inherit; cursor: pointer; }
+.social.phone.open .lbl { max-width: 300px; opacity: 1; margin-left: 10px; }
+.social.phone.open { border-color: var(--accent); color: var(--accent); }
+.reveal { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.reveal .chip { display: none; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--muted); font: 500 13px/1 var(--mono); text-decoration: none; cursor: pointer; }
+.reveal .chip:hover { color: var(--accent); border-color: var(--accent); }
+.reveal:hover .chip, .reveal:has(:focus-visible) .chip, .reveal.open .chip { display: inline-flex; }
+.reveal:hover .social .lbl, .reveal:has(:focus-visible) .social .lbl { max-width: 300px; opacity: 1; margin-left: 10px; }
+.reveal .chip.call { display: none !important; }
+@media (hover: none) and (pointer: coarse) { .reveal.open .chip.call { display: inline-flex !important; } }
+
+footer .places { text-align: right; }
+footer { padding-block: 32px 40px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 13px/1.5 var(--mono); color: var(--muted); }
+
+@media (max-width: 720px) {
+  section.row { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  a.project, .xp { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .dot { animation: none; } .social .lbl { transition: none; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="clock"><span class="dot" aria-hidden="true"></span><span id="clock">Zonguldak</span></span>
+    <nav aria-label="Bölümler">
+      <a href="#hakkimda">hakkımda</a>
+      <a href="#deneyim">deneyim</a>
+      <a href="#isler">işler</a>
+      <a href="#iletisim">iletişim</a>
+      <button class="themebtn" id="theme" type="button" aria-label="Temayı değiştir"></button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Zonguldak Bülent Ecevit Üniversitesi · Yazılım Geliştirme</div>
+      <h1>Ahmet Mirac <em>Demir.</em></h1>
+      <p class="lead">Zonguldak Bülent Ecevit Üniversitesi'nde Yazılım Geliştirme okuyorum. Öğrendiklerimi küçük ve çalışan projelere dönüştürüyorum. Burada ne yaptığımı ve nasıl ulaşabileceğini bulursun.</p>
+      <div class="cta">
+        <a class="btn primary" href="#isler">İşlerime bak</a>
+        <a class="btn" href="#iletisim">Bana ulaş</a>
+      </div>
+    </div>
+
+    <section class="row about" id="hakkimda">
+      <h2>Hakkımda</h2>
+      <div>
+        <p>İkinci sınıf Yazılım Geliştirme öğrencisiyim.</p>
+        <p>C++, Java, HTML, CSS ve Bootstrap biliyorum ve öğrenmeye devam ediyorum.</p>
+        <div class="focus">
+          <div class="focus-label"><span class="dot" aria-hidden="true"></span>Şu anki odak</div>
+          <h3>Şu an ne öğreniyorum?</h3>
+          <p>C++ ve Java ile çalışıyorum. Odak noktalarım:</p>
+          <ul>
+            <li>Algoritma geliştirme</li>
+            <li>Nesne yönelimli programlama</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" id="deneyim">
+      <h2>Deneyim</h2>
+      <div class="xps">
+        <div class="xp">
+          <h3>Karaelmas Yazılım Topluluğu</h3><span class="tags">Topluluk kaptanı</span>
+          <p>Zonguldak Bülent Ecevit Üniversitesi'ne bağlı yazılım topluluğunun kaptanıyım.</p>
+        </div>
+        <div class="xp">
+          <h3>NOVA FORCE Teknoloji Takımı</h3><span class="tags">Takım üyesi · Çekirdek kadro</span>
+          <p>Zonguldak Bülent Ecevit Üniversitesi'nin teknoloji takımında üyeyim ve çekirdek kadrodayım.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" id="isler">
+      <h2>Seçili işler</h2>
+      <div class="projects">
+        <a class="project" href="https://github.com/mirac-tech/mirac-tech.github.io" target="_blank" rel="noopener">
+          <h3>mirac-tech.github.io</h3><span class="tags">C++ · HTML · CSS · Bootstrap</span>
+          <p>Kendi portföy sitem. Şu anda aktif olarak geliştiriyorum. Kodu GitHub'da.</p>
+        </a>
+        <a class="project" href="https://github.com/mirac-tech" target="_blank" rel="noopener">
+          <h3>Diğer kodlama çalışmaları</h3><span class="tags">Java</span>
+          <p>Üzerinde çalıştığım diğer projeler geliştirme aşamasında. Hazır oldukça GitHub'a ekliyorum.</p>
+        </a>
+        <div class="activity">
+          <div class="head"><span>GitHub etkinliği · son 24 hafta</span><a href="https://github.com/mirac-tech" target="_blank" rel="noopener">Profili aç →</a></div>
+          <div class="heat" id="heat" role="img" aria-label="GitHub etkinlik ızgarası, şimdilik boş"></div>
+          <p class="note">Henüz paylaşılan etkinlik yok. Projelerim geliştirme aşamasında, GitHub'a yüklendikçe bu alan dolacak.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" id="beceriler">
+      <h2>Araçlarım</h2>
+      <ul class="skills">
+        <li>C++</li><li>Java</li><li>HTML</li><li>CSS</li><li>Bootstrap</li><li>Git</li><li>GitHub Desktop</li>
+      </ul>
+    </section>
+
+    <section class="row contact" id="iletisim">
+      <h2>İletişim</h2>
+      <div>
+        <div class="socials">
+          <a class="social" href="https://github.com/mirac-tech" target="_blank" rel="noopener" aria-label="GitHub: mirac-tech">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <span class="lbl">GitHub · mirac-tech</span>
+          </a>
+          <a class="social" href="https://www.instagram.com/ahmtmrcdmrr/" target="_blank" rel="noopener" aria-label="Instagram: ahmtmrcdmrr">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span class="lbl">Instagram · ahmtmrcdmrr</span>
+          </a>
+          <a class="social" href="https://www.linkedin.com/in/ahmet-mirac-demir-5ba333386" target="_blank" rel="noopener" aria-label="LinkedIn: Ahmet Mirac Demir">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <span class="lbl">LinkedIn · Ahmet Mirac Demir</span>
+          </a>
+          <span class="reveal">
+          <button class="social phone" type="button" data-show="E-posta: ahmetmiracdemir34@gmail.com" data-hide="E-posta adresini göster" aria-label="E-posta adresini göster">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="lbl">ahmetmiracdemir34@gmail.com</span>
+          </button>
+          <button class="chip" type="button" data-copy="ahmetmiracdemir34@gmail.com">Kopyala</button>
+          </span>
+          <span class="reveal">
+          <button class="social phone" type="button" data-show="Telefon: 0553 108 4003" data-hide="Telefon numarasını göster" aria-label="Telefon numarasını göster">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="lbl">0553 108 4003</span>
+          </button>
+          <button class="chip" type="button" data-copy="0553 108 4003">Kopyala</button>
+          <a class="chip call" href="tel:+905531084003">Ara</a>
+          </span>
+        </div>
+
+        <div class="community-label">Karaelmas Yazılım Topluluğu</div>
+        <div class="socials socials-community">
+          <a class="social" href="https://www.instagram.com/karaelmasyazilim/" target="_blank" rel="noopener" aria-label="Karaelmas Yazılım Instagram: karaelmasyazilim">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span class="lbl">Instagram · karaelmasyazilim</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Ahmet Mirac Demir</span>
+    <span class="places">Zonguldak, 41.45° K 31.80° D<br>İstanbul, 41.01° K 28.98° D</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var el = document.getElementById("clock");
+  function tick() {
+    try {
+      var t = new Intl.DateTimeFormat("tr-TR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Istanbul" }).format(new Date());
+      el.textContent = "Zonguldak · " + t;
+    } catch (e) { el.textContent = "Zonguldak"; }
+  }
+  tick(); setInterval(tick, 20000);
+
+  // 24 hafta x 7 gün = 168 değer, her biri 0-4 arası (0 = etkinlik yok). Şimdilik boş.
+  var LEVELS = [];
+  var heat = document.getElementById("heat");
+  for (var i = 0; i < 168; i++) {
+    var cell = document.createElement("i");
+    cell.setAttribute("data-l", String(LEVELS[i] || 0));
+    heat.appendChild(cell);
+  }
+
+  var root = document.documentElement, tbtn = document.getElementById("theme");
+  var SUN = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  var MOON = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  function current() {
+    var t = root.getAttribute("data-theme");
+    if (t === "light" || t === "dark") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  }
+  function paint() {
+    var c = current();
+    tbtn.innerHTML = c === "dark" ? SUN : MOON;
+    tbtn.setAttribute("aria-label", c === "dark" ? "Aydınlık temaya geç" : "Karanlık temaya geç");
+  }
+  try { var saved = localStorage.getItem("theme"); if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved); } catch (e) {}
+  paint();
+  tbtn.addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    paint();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".social.phone"), function (btn) {
+    btn.addEventListener("click", function () {
+      btn.classList.toggle("open");
+      btn.closest(".reveal").classList.toggle("open", btn.classList.contains("open"));
+      btn.setAttribute("aria-label", btn.getAttribute(btn.classList.contains("open") ? "data-show" : "data-hide"));
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".chip[data-copy]"), function (chip) {
+    chip.addEventListener("click", function () {
+      var value = chip.getAttribute("data-copy");
+      var done = function () { chip.textContent = "Kopyalandı"; setTimeout(function () { chip.textContent = "Kopyala"; }, 1800); };
+      var fallback = function () {
+        var lbl = chip.parentNode.querySelector(".lbl");
+        var r = document.createRange(); r.selectNodeContents(lbl);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        chip.textContent = "Seçildi";
+      };
+      try { navigator.clipboard.writeText(value).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
